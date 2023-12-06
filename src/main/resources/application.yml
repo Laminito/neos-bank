@@ -1,0 +1,69 @@
+application:
+  security:
+    jwt:
+      secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+      expiration: 86400000 # a day
+      refresh-token:
+        expiration: 604800000 # 7 days
+
+spring:
+#  mvc:
+#    throw-exception-if-no-handler-found: true
+#    resources:
+#      add-mappings: false
+  jwt:
+    secret: xgdfehfvuyrgfieurhfjsgudyj7625614165VUYbgyzdgjzhefeirgberkjb
+    expiration: 3600 # Durée d'expiration en secondes
+
+#  server:
+#    error:
+#      include-stacktrace: never
+
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/neos_bank
+    username: postgres
+    password: postgres
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  springdoc:
+    show-actuator: true # Activer la documentation des actuateurs Spring Boot
+    security:
+        enabled: false # Activer ou désactiver la documentation de la sécurité
+
+    api-docs:
+      enabled: true # Activer la génération de la documentation
+    groups:
+      http:
+        paths-to-match: "/**" # Les chemins à inclure dans ce groupe
+        group: "neos" # Nom du groupe
+    info:
+      app:
+        title: "Neos-Bank" # Titre de l'API
+        version: "1.0.0" # Version de l'API
+        description: "Description de votre API" # Description de votre API
+        contact:
+          name: "Nom du contact" # Nom du contact
+          email: "contact@email.com" # Email du contact
+          # URL -> http://localhost:9898/api/neos-bank/swagger-ui/index.html
+
+          #Démarrage keycloack
+          #       sudo docker run -p 8888:8080 \
+          #    -e KEYCLOAK_ADMIN=admin \
+          #    -e KEYCLOAK_ADMIN_PASSWORD=password \
+          #    -e JAVA_OPTS="-Djboss.socket.binding.port-offset=808" \
+          #    keycloak/keycloak:17.0.0 start-dev
+
+
+  logging:
+    level:
+      org.springframework.security: INFO
+    pattern:
+      console: "%d{dd-MM-yyyy HH:mm:ss} %magenta([%thread]) %highlight(%-5level) %logger.%M - %msg%n"
+
+
+
